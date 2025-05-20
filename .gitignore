@@ -1,0 +1,18 @@
+# Ignorer tous les fichiers contenant des tokens ou des infos sensibles
+token.json
+token.pickle
+token_gmail.json
+token_gmail.pkl
+token_calendar.pkl
+credentials.json
+credentials_gmail.json
+credentials_calendar.json
+
+# Ignorer les fichiers temporaires ou caches
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorer les fichiers système
+.DS_Store
+Thumbs.db
