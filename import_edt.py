@@ -28,8 +28,9 @@ def authenticate_google_account():
             creds.refresh(Request())
         else:
             flow = InstalledAppFlow.from_client_secrets_file(
-                'C:/Projet_Calendar/credentials_calendar.json', SCOPES)
+                'C:/Users/oussa/Desktop/projet_ray/Projet_Calendar/credentials_calendar.json', SCOPES)
             creds = flow.run_local_server(port=0)
+            #creds = flow.run_console() 
         with open('token_calendar.pkl', 'wb') as token:
             pickle.dump(creds, token)
     return creds
@@ -111,7 +112,7 @@ def main():
     delete_all_events(service)
 
     # Ajouter les événements du fichier ICS
-    read_ics_and_add_events(service, 'C:/Projet_Calendar/edt_miage.ics')
+    read_ics_and_add_events(service, 'C:/Users/oussa/Desktop/projet_ray/Projet_Calendar/edt_miage.ics')
 
 if __name__ == '__main__':
     main()

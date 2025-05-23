@@ -19,8 +19,8 @@ def create_message(sender, to, subject, message_text):
 
 def main():
     creds = None
-    if os.path.exists('token_gmail.json'):
-        creds = Credentials.from_authorized_user_file('token_gmail.json', SCOPES_GMAIL)
+    if os.path.exists('token_calendar.json'):
+        creds = Credentials.from_authorized_user_file('token_calendar.json', SCOPES_GMAIL)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
@@ -41,7 +41,7 @@ def main():
 
     message = create_message(sender, to, subject, message_text)
     send_message = service.users().messages().send(userId="me", body=message).execute()
-    print(f"✅ Message envoyé avec l'ID : {send_message['id']}")
+    print(f" Message envoyé avec l'ID : {send_message['id']}")
 
 if __name__ == '__main__':
     main()

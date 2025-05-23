@@ -1,4 +1,4 @@
-from mistral import Client
+#from mistral import Client
 from plyer import notification
 
 def main():
