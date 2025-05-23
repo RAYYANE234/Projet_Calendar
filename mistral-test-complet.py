@@ -156,6 +156,11 @@ def get_unread_emails(gmail_service, calendar_service):
         data = analyze_email_with_mistral_structured(subject, snippet)
         action = data.get("action")
         if action == "annuler":
+            notification.notify(
+            title=f"Nouveau mail : {subject}",
+            message=snippet,
+            timeout=5
+            )
             print("🛠️ Détails complets Mistral pour annulation :")
             print(data)  # affiche le dict JSON reçu de Mistral
             deleted=delete_event(calendar_service, data.get("titre"), data.get("date"))
@@ -164,18 +169,17 @@ def get_unread_emails(gmail_service, calendar_service):
             else:
                 print("⚠️ Aucune suppression effectuée.")
         elif action == "reporter":
+            notification.notify(
+            title=f"Nouveau mail : {subject}",
+            message=snippet,
+            timeout=5
+            )            
             if data.get("heure"):
                 print("🛠️ Détails complets Mistral pour modification :")
                 print(data)  # affiche le dict JSON reçu de Mistral
                 update_event(calendar_service, data.get("titre"), data.get("ancienne_date"), data.get("nouvelle_date"), data.get("heure"))
         else:
             print("ℹ️ Aucun changement nécessaire.")
-
-        notification.notify(
-            title=f"Nouveau mail : {subject}",
-            message=snippet,
-            timeout=5
-        )
         time.sleep(2)  # limite les appels API
 
 def main():
